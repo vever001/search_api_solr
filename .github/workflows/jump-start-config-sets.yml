@@ -102,6 +102,9 @@ jobs:
             - name: Generate config-sets
               run: |
                 cd drupal
+                vendor/bin/drush -v solr-gsc solr config.zip 3.6
+                rm ../search_api_solr/jump-start/solr3/config-set/*
+                unzip -o -d ../search_api_solr/jump-start/solr3/config-set config.zip
                 vendor/bin/drush -v solr-gsc solr config.zip 4.5
                 rm ../search_api_solr/jump-start/solr4/config-set/*
                 unzip -o -d ../search_api_solr/jump-start/solr4/config-set config.zip
@@ -146,7 +149,7 @@ jobs:
         strategy:
             matrix:
                 drupal: ['8.9', '9.0', '9.1']
-                solr: ['4', '5', '6', '7', '8']
+                solr: ['3', '4', '5', '6', '7', '8']
                 php: ['7.3', '7.4']
                 exclude:
                   - drupal: '9.1'
