@@ -15,10 +15,6 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<!DOCTYPE schema [
-  <!ENTITY extrafields SYSTEM "schema_extra_fields.xml">
-  <!ENTITY extratypes SYSTEM "schema_extra_types.xml">
-]>
 
 <!--
  This is the Solr schema file. This file should be named "schema.xml" and
@@ -49,7 +45,7 @@
     that avoids logging every request
 -->
 
-<schema name="drupal-4.1.0-solr-3.x-0" version="1.3">
+<schema name="drupal-4.1.1-solr-3.x-0" version="1.3">
     <!-- attribute "name" is the name of this schema and is only used for display purposes.
          Applications should change this to reflect the nature of the search collection.
          version="1.2" is Solr's version number for the schema syntax and semantics.  It should
@@ -194,8 +190,10 @@
        unknown fields indexed and/or stored by default -->
   <dynamicField name="*" type="ignored" multiValued="true" />
 
-  <!-- Following is a dynamic way to include other fields, added by other contrib modules -->
-  &extrafields;
+    <!-- Following is a dynamic way to include other fields, added by other contrib modules -->
+    <xi:include href="schema_extra_fields.xml" xmlns:xi="http://www.w3.org/2001/XInclude">
+      <xi:fallback></xi:fallback>
+    </xi:include>
 
   </fields>
 
@@ -378,8 +376,10 @@
   -->
 <!--  <fieldType name="currency" class="solr.CurrencyField" precisionStep="8" defaultCurrency="USD" currencyConfig="currency.xml" /> -->
 
-  <!-- Following is a dynamic way to include other types, added by other contrib modules -->
-  &extratypes;
+    <!-- Following is a dynamic way to include other types, added by other contrib modules -->
+    <xi:include href="schema_extra_types.xml" xmlns:xi="http://www.w3.org/2001/XInclude">
+      <xi:fallback></xi:fallback>
+    </xi:include>
 
   </types>
 

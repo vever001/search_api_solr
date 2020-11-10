@@ -104,7 +104,7 @@
        WARNING: See also the <mainIndex> section below for parameters
        that overfor Solr's main Lucene index.
     -->
-  <indexConfig>
+  <indexDefaults>
 
     <useCompoundFile>false</useCompoundFile>
 
@@ -234,7 +234,7 @@
     <!-- Let the config generator easily inject additional stuff. -->
     &index;
 
-  </indexConfig>
+  </indexDefaults>
 
 
   <!-- JMX
@@ -278,16 +278,6 @@
       <maxTime>${solr.autoCommit.MaxTime:120000}</maxTime>
     </autoCommit>
 
-    <!-- softAutoCommit is like autoCommit except it causes a
-         'soft' commit which only ensures that changes are visible
-         but does not ensure that data is synced to disk.  This is
-         faster and more near-realtime friendly than a hard commit.
-    -->
-    <autoSoftCommit>
-      <maxDocs>${solr.autoSoftCommit.MaxDocs:2000}</maxDocs>
-      <maxTime>${solr.autoSoftCommit.MaxTime:10000}</maxTime>
-    </autoSoftCommit>
-
     <!-- Update Related Event Listeners
 
          Various IndexWriter related events can trigger Listeners to
@@ -319,17 +309,6 @@
          <arr name="env"> <str>MYVAR=val1</str> </arr>
        </listener>
       -->
-    <!-- Enables a transaction log, currently used for real-time get.
-         "dir" - the target directory for transaction logs, defaults to the
-         solr data directory.  -->
-    <updateLog>
-      <str name="dir">${solr.data.dir:}</str>
-      <!-- if you want to take control of the synchronization you may specify
-           the syncLevel as one of the following where ''flush'' is the default.
-           Fsync will reduce throughput.
-           <str name="syncLevel">flush|fsync|none</str>
-      -->
-    </updateLog>
   </updateHandler>
 
   <!-- IndexReaderFactory
@@ -796,7 +775,7 @@
        requires: -H 'Content-type:text/xml; charset=utf-8'
     -->
   <requestHandler name="/update"
-                  class="solr.UpdateRequestHandler">
+                  class="solr.XmlUpdateRequestHandler">
     <!-- See below for information on defining
          updateRequestProcessorChains that can be used by name
          on each Update Request
@@ -811,7 +790,7 @@
        http://wiki.apache.org/solr/javabin
     -->
   <requestHandler name="/update/javabin"
-                  class="solr.UpdateRequestHandler" />
+                  class="solr.BinaryUpdateRequestHandler" />
 
   <!-- CSV Update Request Handler
        http://wiki.apache.org/solr/UpdateCSV
@@ -982,18 +961,6 @@
       <bool name="enable">${solr.replication.slave:false}</bool>
       <str name="masterUrl">${solr.replication.masterUrl:http://localhost:8983/solr}/replication</str>
       <str name="pollInterval">${solr.replication.pollInterval:00:00:60}</str>
-    </lst>
-  </requestHandler>
-
-  <!-- Realtime get handler, guaranteed to return the latest stored fields of
-       any document, without the need to commit or open a new searcher.  The
-       current implementation relies on the updateLog feature being enabled.
-  -->
-  <requestHandler name="/get" class="solr.RealTimeGetHandler">
-    <lst name="defaults">
-      <bool name="omitHeader">true</bool>
-      <str name="wt">json</str>
-      <bool name="indent">true</bool>
     </lst>
   </requestHandler>
 
