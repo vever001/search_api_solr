@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!DOCTYPE config [
-  <!ENTITY extra SYSTEM "solrconfig_extra.xml">
-  <!ENTITY index SYSTEM "solrconfig_index.xml">
-]>
-
 <!--
      For more details about configurations options that may appear in
      this file, see http://wiki.apache.org/solr/SolrConfigXml.
@@ -232,7 +227,7 @@
      <infoStream file="INFOSTREAM.txt">false</infoStream>
 
     <!-- Let the config generator easily inject additional stuff. -->
-    &index;
+    SEARCH_API_SOLR_SOLRCONFIG_INDEX
 
   </indexDefaults>
 
@@ -1008,7 +1003,7 @@
      -->
 
   <!-- Following is a dynamic way to include other components or any customized solrconfig.xml stuff, added by other contrib modules -->
-  &extra;
+  SEARCH_API_SOLR_SOLRCONFIG_EXTRA
 
   <!-- A request handler for demonstrating the spellcheck component.
 

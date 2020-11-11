@@ -191,9 +191,7 @@
   <dynamicField name="*" type="ignored" multiValued="true" />
 
     <!-- Following is a dynamic way to include other fields, added by other contrib modules -->
-    <xi:include href="schema_extra_fields.xml" xmlns:xi="http://www.w3.org/2001/XInclude">
-      <xi:fallback></xi:fallback>
-    </xi:include>
+    SEARCH_API_SOLR_SCHEMA_EXTRA_FIELDS
 
   </fields>
 
@@ -377,9 +375,7 @@
 <!--  <fieldType name="currency" class="solr.CurrencyField" precisionStep="8" defaultCurrency="USD" currencyConfig="currency.xml" /> -->
 
     <!-- Following is a dynamic way to include other types, added by other contrib modules -->
-    <xi:include href="schema_extra_types.xml" xmlns:xi="http://www.w3.org/2001/XInclude">
-      <xi:fallback></xi:fallback>
-    </xi:include>
+    SEARCH_API_SOLR_SCHEMA_EXTRA_TYPES
 
   </types>
 

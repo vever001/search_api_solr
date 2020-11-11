@@ -1,9 +1,0 @@
-<searchComponent name="spellcheck" class="solr.SpellCheckComponent">
-    <lst name="spellchecker">
-      <str name="name">und</str>
-      <str name="field">spellcheck_und</str>
-      <str name="spellcheckIndexDir">spellchecker_und</str>
-      <str name="buildOnOptimize">true</str>
-      <str name="onlyMorePopular">true</str>
-    </lst>
-  </searchComponent>

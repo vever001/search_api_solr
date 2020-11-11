@@ -191,9 +191,54 @@
   <dynamicField name="*" type="ignored" multiValued="true" />
 
     <!-- Following is a dynamic way to include other fields, added by other contrib modules -->
-    <xi:include href="schema_extra_fields.xml" xmlns:xi="http://www.w3.org/2001/XInclude">
-      <xi:fallback></xi:fallback>
-    </xi:include>
+    <dynamicField name="tcedgestrings_X3b_und_*" type="text_edgenstring" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
+<dynamicField name="tcedgestrings_*" type="text_edgenstring" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
+<dynamicField name="tcedgestringm_X3b_und_*" type="text_edgenstring" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
+<dynamicField name="tcedgestringm_*" type="text_edgenstring" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
+<dynamicField name="tocedgestrings_X3b_und_*" type="text_edgenstring" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="true" />
+<dynamicField name="tocedgestrings_*" type="text_edgenstring" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="true" />
+<dynamicField name="tocedgestringm_X3b_und_*" type="text_edgenstring" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
+<dynamicField name="tocedgestringm_*" type="text_edgenstring" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
+<dynamicField name="tucedgestrings_X3b_und_*" type="text_edgenstring" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
+<dynamicField name="tucedgestrings_*" type="text_edgenstring" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
+<dynamicField name="tucedgestringm_X3b_und_*" type="text_edgenstring" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
+<dynamicField name="tucedgestringm_*" type="text_edgenstring" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
+<dynamicField name="tcedges_X3b_und_*" type="text_edge" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
+<dynamicField name="tcedges_*" type="text_edge" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
+<dynamicField name="tcedgem_X3b_und_*" type="text_edge" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
+<dynamicField name="tcedgem_*" type="text_edge" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
+<dynamicField name="tocedges_X3b_und_*" type="text_edge" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="true" />
+<dynamicField name="tocedges_*" type="text_edge" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="true" />
+<dynamicField name="tocedgem_X3b_und_*" type="text_edge" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
+<dynamicField name="tocedgem_*" type="text_edge" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
+<dynamicField name="tucedges_X3b_und_*" type="text_edge" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
+<dynamicField name="tucedges_*" type="text_edge" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
+<dynamicField name="tucedgem_X3b_und_*" type="text_edge" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
+<dynamicField name="tucedgem_*" type="text_edge" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
+<dynamicField name="ts_X3b_en_*" type="text_en" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
+<dynamicField name="tm_X3b_en_*" type="text_en" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
+<dynamicField name="tos_X3b_en_*" type="text_en" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="true" />
+<dynamicField name="tom_X3b_en_*" type="text_en" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
+<dynamicField name="tus_X3b_en_*" type="text_unstemmed_en" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
+<dynamicField name="tum_X3b_en_*" type="text_unstemmed_en" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
+<dynamicField name="sort_X3b_en_*" type="collated_en" stored="false" indexed="false" docValues="true" />
+<dynamicField name="ts_X3b_und_*" type="text_und" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
+<dynamicField name="ts_*" type="text_und" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
+<dynamicField name="tm_X3b_und_*" type="text_und" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
+<dynamicField name="tm_*" type="text_und" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
+<dynamicField name="tos_X3b_und_*" type="text_und" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="true" />
+<dynamicField name="tos_*" type="text_und" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="true" />
+<dynamicField name="tom_X3b_und_*" type="text_und" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
+<dynamicField name="tom_*" type="text_und" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
+<dynamicField name="tus_X3b_und_*" type="text_und" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
+<dynamicField name="tus_*" type="text_und" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
+<dynamicField name="tum_X3b_und_*" type="text_und" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
+<dynamicField name="tum_*" type="text_und" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
+<dynamicField name="spellcheck_und*" type="text_spell_und" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
+<dynamicField name="spellcheck_*" type="text_spell_und" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
+<dynamicField name="sort_X3b_und_*" type="collated_und" stored="false" indexed="false" docValues="true" />
+<dynamicField name="sort_*" type="collated_und" stored="false" indexed="false" docValues="true" />
+
 
   </fields>
 
@@ -377,9 +422,147 @@
 <!--  <fieldType name="currency" class="solr.CurrencyField" precisionStep="8" defaultCurrency="USD" currencyConfig="currency.xml" /> -->
 
     <!-- Following is a dynamic way to include other types, added by other contrib modules -->
-    <xi:include href="schema_extra_types.xml" xmlns:xi="http://www.w3.org/2001/XInclude">
-      <xi:fallback></xi:fallback>
-    </xi:include>
+    <!--
+  Edge NGram String Field
+  3.6.0
+-->
+<fieldType name="text_edgenstring" class="solr.TextField" positionIncrementGap="100">
+  <analyzer type="index">
+    <tokenizer class="solr.KeywordTokenizerFactory"/>
+    <filter class="solr.LowerCaseFilterFactory"/>
+    <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+    <filter class="solr.EdgeNGramFilterFactory" minGramSize="2" maxGramSize="25"/>
+  </analyzer>
+  <analyzer type="query">
+    <tokenizer class="solr.KeywordTokenizerFactory"/>
+    <filter class="solr.LowerCaseFilterFactory"/>
+    <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+  </analyzer>
+</fieldType>
+<!--
+  Edge NGram Text Field
+  3.6.0
+-->
+<fieldType name="text_edge" class="solr.TextField" positionIncrementGap="100">
+  <analyzer type="index">
+    <charFilter class="solr.MappingCharFilterFactory" mapping="accents_und.txt"/>
+    <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+    <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords_und.txt" enablePositionIncrements="true"/>
+    <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="1" generateNumberParts="1" protected="protwords_und.txt" splitOnCaseChange="0" generateWordParts="1" preserveOriginal="1" catenateAll="0" catenateWords="1"/>
+    <filter class="solr.LengthFilterFactory" min="2" max="100"/>
+    <filter class="solr.LowerCaseFilterFactory"/>
+    <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+    <filter class="solr.EdgeNGramFilterFactory" minGramSize="2" maxGramSize="25"/>
+  </analyzer>
+  <analyzer type="query">
+    <charFilter class="solr.MappingCharFilterFactory" mapping="accents_und.txt"/>
+    <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+    <filter class="solr.LengthFilterFactory" min="2" max="100"/>
+    <filter class="solr.LowerCaseFilterFactory"/>
+    <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+  </analyzer>
+</fieldType>
+<!--
+  English Text Field
+  3.6.0
+-->
+<fieldType name="text_en" class="solr.TextField" positionIncrementGap="100">
+  <analyzer type="index">
+    <charFilter class="solr.MappingCharFilterFactory" mapping="accents_en.txt"/>
+    <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+    <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords_en.txt" enablePositionIncrements="true"/>
+    <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="1" generateNumberParts="1" protected="protwords_en.txt" splitOnCaseChange="0" generateWordParts="1" preserveOriginal="1" catenateAll="0" catenateWords="1"/>
+    <filter class="solr.LengthFilterFactory" min="2" max="100"/>
+    <filter class="solr.LowerCaseFilterFactory"/>
+    <filter class="solr.SnowballPorterFilterFactory" language="English" protected="protwords_en.txt"/>
+    <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+  </analyzer>
+  <analyzer type="query">
+    <charFilter class="solr.MappingCharFilterFactory" mapping="accents_en.txt"/>
+    <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+    <filter class="solr.SynonymFilterFactory" synonyms="synonyms_en.txt" expand="true" ignoreCase="true"/>
+    <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords_en.txt" enablePositionIncrements="true"/>
+    <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="0" generateNumberParts="1" protected="protwords_en.txt" splitOnCaseChange="0" generateWordParts="1" preserveOriginal="1" catenateAll="0" catenateWords="0"/>
+    <filter class="solr.LengthFilterFactory" min="2" max="100"/>
+    <filter class="solr.LowerCaseFilterFactory"/>
+    <filter class="solr.SnowballPorterFilterFactory" language="English" protected="protwords_en.txt"/>
+    <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+  </analyzer>
+</fieldType>
+<!--
+  English Text Field collated
+  3.6.0
+-->
+<fieldType name="collated_en" class="solr.StrField"/>
+<!--
+  English Text Field unstemmed
+  3.6.0
+-->
+<fieldType name="text_unstemmed_en" class="solr.TextField" positionIncrementGap="100">
+  <analyzer type="index">
+    <charFilter class="solr.MappingCharFilterFactory" mapping="accents_en.txt"/>
+    <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+    <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords_en.txt" enablePositionIncrements="true"/>
+    <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="1" generateNumberParts="1" protected="protwords_en.txt" splitOnCaseChange="0" generateWordParts="1" preserveOriginal="1" catenateAll="0" catenateWords="1"/>
+    <filter class="solr.LengthFilterFactory" min="2" max="100"/>
+    <filter class="solr.LowerCaseFilterFactory"/>
+    <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+  </analyzer>
+  <analyzer type="query">
+    <charFilter class="solr.MappingCharFilterFactory" mapping="accents_en.txt"/>
+    <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+    <filter class="solr.SynonymFilterFactory" synonyms="synonyms_en.txt" expand="true" ignoreCase="true"/>
+    <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords_en.txt" enablePositionIncrements="true"/>
+    <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="0" generateNumberParts="1" protected="protwords_en.txt" splitOnCaseChange="0" generateWordParts="1" preserveOriginal="1" catenateAll="0" catenateWords="0"/>
+    <filter class="solr.LengthFilterFactory" min="2" max="100"/>
+    <filter class="solr.LowerCaseFilterFactory"/>
+    <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+  </analyzer>
+</fieldType>
+<!--
+  Language Undefined Text Field
+  3.6.0
+-->
+<fieldType name="text_und" class="solr.TextField" positionIncrementGap="100">
+  <analyzer type="index">
+    <charFilter class="solr.MappingCharFilterFactory" mapping="accents_und.txt"/>
+    <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+    <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords_und.txt" enablePositionIncrements="true"/>
+    <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="1" generateNumberParts="1" protected="protwords_und.txt" splitOnCaseChange="0" generateWordParts="1" preserveOriginal="1" catenateAll="0" catenateWords="1"/>
+    <filter class="solr.LengthFilterFactory" min="2" max="100"/>
+    <filter class="solr.LowerCaseFilterFactory"/>
+    <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+  </analyzer>
+  <analyzer type="query">
+    <charFilter class="solr.MappingCharFilterFactory" mapping="accents_und.txt"/>
+    <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+    <filter class="solr.SynonymFilterFactory" synonyms="synonyms_und.txt" expand="true" ignoreCase="true"/>
+    <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords_und.txt" enablePositionIncrements="true"/>
+    <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="0" generateNumberParts="1" protected="protwords_und.txt" splitOnCaseChange="0" generateWordParts="1" preserveOriginal="1" catenateAll="0" catenateWords="0"/>
+    <filter class="solr.LengthFilterFactory" min="2" max="100"/>
+    <filter class="solr.LowerCaseFilterFactory"/>
+    <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+  </analyzer>
+</fieldType>
+<!--
+  Language Undefined Text Field spellcheck
+  3.6.0
+-->
+<fieldType name="text_spell_und" class="solr.TextField" positionIncrementGap="100">
+  <analyzer>
+    <charFilter class="solr.MappingCharFilterFactory" mapping="accents_und.txt"/>
+    <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+    <filter class="solr.LengthFilterFactory" min="2" max="100"/>
+    <filter class="solr.LowerCaseFilterFactory"/>
+    <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+  </analyzer>
+</fieldType>
+<!--
+  Language Undefined Text Field collated
+  3.6.0
+-->
+<fieldType name="collated_und" class="solr.StrField"/>
+
 
   </types>
 

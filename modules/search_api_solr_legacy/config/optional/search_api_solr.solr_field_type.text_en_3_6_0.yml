@@ -3,14 +3,17 @@ status: true
 dependencies:
   module:
     - search_api_solr
-id: text_und_3_6_0
-label: 'Language Undefined Text Field'
+    - language
+  config:
+    - language.entity.en
+id: text_en_3_6_0
+label: 'English Text Field'
 minimum_solr_version: 3.6.0
 custom_code: ''
-field_type_language_code: und
+field_type_language_code: en
 domains: {}
 field_type:
-  name: text_und
+  name: text_en
   class: solr.TextField
   positionIncrementGap: 100
   analyzers:
@@ -19,20 +22,102 @@ field_type:
       charFilters:
         -
           class: solr.MappingCharFilterFactory
-          mapping: accents_und.txt
+          mapping: accents_en.txt
       tokenizer:
         class: solr.WhitespaceTokenizerFactory
       filters:
         -
           class: solr.StopFilterFactory
           ignoreCase: true
-          words: stopwords_und.txt
+          words: stopwords_en.txt
           enablePositionIncrements: true
         -
           class: solr.WordDelimiterFilterFactory
           catenateNumbers: 1
           generateNumberParts: 1
-          protected: protwords_und.txt
+          protected: protwords_en.txt
+          splitOnCaseChange: 0
+          generateWordParts: 1
+          preserveOriginal: 1
+          catenateAll: 0
+          catenateWords: 1
+        -
+          class: solr.LengthFilterFactory
+          min: 2
+          max: 100
+        -
+          class: solr.LowerCaseFilterFactory
+        -
+          class: solr.SnowballPorterFilterFactory
+          language: English
+          protected: protwords_en.txt
+        -
+          class: solr.RemoveDuplicatesTokenFilterFactory
+    -
+      type: query
+      charFilters:
+        -
+          class: solr.MappingCharFilterFactory
+          mapping: accents_en.txt
+      tokenizer:
+        class: solr.WhitespaceTokenizerFactory
+      filters:
+        -
+          class: solr.SynonymFilterFactory
+          synonyms: synonyms_en.txt
+          expand: true
+          ignoreCase: true
+        -
+          class: solr.StopFilterFactory
+          ignoreCase: true
+          words: stopwords_en.txt
+          enablePositionIncrements: true
+        -
+          class: solr.WordDelimiterFilterFactory
+          catenateNumbers: 0
+          generateNumberParts: 1
+          protected: protwords_en.txt
+          splitOnCaseChange: 0
+          generateWordParts: 1
+          preserveOriginal: 1
+          catenateAll: 0
+          catenateWords: 0
+        -
+          class: solr.LengthFilterFactory
+          min: 2
+          max: 100
+        -
+          class: solr.LowerCaseFilterFactory
+        -
+          class: solr.SnowballPorterFilterFactory
+          language: English
+          protected: protwords_en.txt
+        -
+          class: solr.RemoveDuplicatesTokenFilterFactory
+unstemmed_field_type:
+  name: text_unstemmed_en
+  class: solr.TextField
+  positionIncrementGap: 100
+  analyzers:
+    -
+      type: index
+      charFilters:
+        -
+          class: solr.MappingCharFilterFactory
+          mapping: accents_en.txt
+      tokenizer:
+        class: solr.WhitespaceTokenizerFactory
+      filters:
+        -
+          class: solr.StopFilterFactory
+          ignoreCase: true
+          words: stopwords_en.txt
+          enablePositionIncrements: true
+        -
+          class: solr.WordDelimiterFilterFactory
+          catenateNumbers: 1
+          generateNumberParts: 1
+          protected: protwords_en.txt
           splitOnCaseChange: 0
           generateWordParts: 1
           preserveOriginal: 1
@@ -51,25 +136,25 @@ field_type:
       charFilters:
         -
           class: solr.MappingCharFilterFactory
-          mapping: accents_und.txt
+          mapping: accents_en.txt
       tokenizer:
         class: solr.WhitespaceTokenizerFactory
       filters:
         -
           class: solr.SynonymFilterFactory
-          synonyms: synonyms_und.txt
+          synonyms: synonyms_en.txt
           expand: true
           ignoreCase: true
         -
           class: solr.StopFilterFactory
           ignoreCase: true
-          words: stopwords_und.txt
+          words: stopwords_en.txt
           enablePositionIncrements: true
         -
           class: solr.WordDelimiterFilterFactory
           catenateNumbers: 0
           generateNumberParts: 1
-          protected: protwords_und.txt
+          protected: protwords_en.txt
           splitOnCaseChange: 0
           generateWordParts: 1
           preserveOriginal: 1
@@ -83,28 +168,8 @@ field_type:
           class: solr.LowerCaseFilterFactory
         -
           class: solr.RemoveDuplicatesTokenFilterFactory
-spellcheck_field_type:
-  name: text_spell_und
-  class: solr.TextField
-  positionIncrementGap: 100
-  analyzer:
-    charFilters:
-      -
-        class: solr.MappingCharFilterFactory
-        mapping: accents_und.txt
-    tokenizer:
-      class: solr.WhitespaceTokenizerFactory
-    filters:
-      -
-        class: solr.LengthFilterFactory
-        min: 2
-        max: 100
-      -
-        class: solr.LowerCaseFilterFactory
-      -
-        class: solr.RemoveDuplicatesTokenFilterFactory
 collated_field_type:
-  name: collated_und
+  name: collated_en
   class: solr.StrField
 solr_configs:
   searchComponents:
@@ -117,13 +182,13 @@ solr_configs:
           str:
             -
               name: name
-              VALUE: und
+              VALUE: en
             -
               name: field
-              VALUE: spellcheck_und
+              VALUE: spellcheck_en
             -
               name: spellcheckIndexDir
-              VALUE: spellchecker_und
+              VALUE: spellchecker_en
             -
               name: buildOnOptimize
               VALUE: 'true'
@@ -132,6 +197,41 @@ solr_configs:
               VALUE: 'true'
 text_files:
   stopwords: |
+    a
+    an
+    and
+    are
+    as
+    at
+    be
+    but
+    by
+    for
+    if
+    in
+    into
+    is
+    it
+    no
+    not
+    of
+    on
+    or
+    s
+    such
+    t
+    that
+    the
+    their
+    then
+    there
+    these
+    they
+    this
+    to
+    was
+    will
+    with
   synonyms: |
     drupal, durpal
   protwords: |
@@ -148,10 +248,14 @@ text_files:
     "\u00C4" => "A"
     # Å => A
     "\u00C5" => "A"
+    # Ą => A
+    "\u0104" => "A"
     # Æ => AE
     "\u00C6" => "AE"
     # Ç => C
     "\u00C7" => "C"
+    # Ć => C
+    "\U0106" => "C"
     # È => E
     "\u00C8" => "E"
     # É => E
@@ -160,6 +264,8 @@ text_files:
     "\u00CA" => "E"
     # Ë => E
     "\u00CB" => "E"
+    # Ę => E
+    "\u0118" => "E"
     # Ì => I
     "\u00CC" => "I"
     # Í => I
@@ -172,8 +278,12 @@ text_files:
     "\u0132" => "IJ"
     # Ð => D
     "\u00D0" => "D"
+    # Ł => L
+    "\u0141" => "L"
     # Ñ => N
     "\u00D1" => "N"
+    # Ń => N
+    "\u0143" => "N"
     # Ò => O
     "\u00D2" => "O"
     # Ó => O
@@ -256,6 +366,8 @@ text_files:
     "\u0153" => "oe"
     # ß => ss
     "\u00DF" => "ss"
+    # Ś => S
+    "\u015a" => "S"
     # þ => th
     "\u00FE" => "th"
     # ù => u
@@ -270,6 +382,10 @@ text_files:
     "\u00FD" => "y"
     # ÿ => y
     "\u00FF" => "y"
+    # Ź => Z
+    "\u0179" => "Z"
+    # Ż => Z
+    "\u017b" => "Z"
     # ﬀ => ff
     "\uFB00" => "ff"
     # ﬁ => fi

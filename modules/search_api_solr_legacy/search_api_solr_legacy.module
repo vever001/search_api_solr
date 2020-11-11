@@ -53,14 +53,17 @@ function search_api_solr_legacy_search_api_solr_configset_template_mapping_alter
  */
 function search_api_solr_legacy_search_api_solr_config_files_alter(array &$files, string $lucene_match_version, string $server_id = '') {
   if (version_compare($lucene_match_version, '4', '<')) {
-    if (isset($files['solrconfig_index.xml'])) {
-      $files['solrconfig_index.xml'] = "<indexDefault>\n" . $files['solrconfig_index.xml'] . "</indexDefault>\n";
+    if (isset($files['solrconfig.xml'])) {
+      $files['solrconfig.xml'] = str_replace('SEARCH_API_SOLR_SOLRCONFIG_INDEX', $files['solrconfig_index.xml'] ?? '', $files['solrconfig.xml']);
+      $files['solrconfig.xml'] = str_replace('SEARCH_API_SOLR_SOLRCONFIG_EXTRA', $files['solrconfig_extra.xml'] ?? '', $files['solrconfig.xml']);
+      unset($files['solrconfig_index.xml']);
+      unset($files['solrconfig_extra.xml']);
     }
-    if (isset($files['schema_extra_types.xml'])) {
-      $files['schema_extra_types.xml'] = "<types>\n" . $files['schema_extra_types.xml'] . "</types>\n";
-    }
-    if (isset($files['schema_extra_fields.xml'])) {
-      $files['schema_extra_fields.xml'] = "<fields>\n" . $files['schema_extra_fields.xml'] . "</fields>\n";
+    if (isset($files['schema.xml'])) {
+      $files['schema.xml'] = str_replace('SEARCH_API_SOLR_SCHEMA_EXTRA_FIELDS', $files['schema_extra_fields.xml'] ?? '', $files['schema.xml']);
+      $files['schema.xml'] = str_replace('SEARCH_API_SOLR_SCHEMA_EXTRA_TYPES', $files['schema_extra_types.xml'] ?? '', $files['schema.xml']);
+      unset($files['schema_extra_types.xml']);
+      unset($files['schema_extra_fields.xml']);
     }
   }
 }
