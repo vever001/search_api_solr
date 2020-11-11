@@ -104,6 +104,7 @@ class SearchApiSolrTechproductsTest extends SolrBackendTestBase {
   }
 
   /**
+   * @group not_solr3
    * @group not_solr4
    * @group not_solr5
    */

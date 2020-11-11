@@ -333,11 +333,6 @@ abstract class SolrConnectorPluginBase extends ConfigurablePluginBase implements
   protected function connect() {
     if (!$this->solr) {
       $configuration = $this->configuration;
-      if (version_compare($this->getSolrVersion(), '4', '<')) {
-        // Solr 3.6 doesn't have the core name in the path. But solarium 6 needs
-        // it. The period is a workaround that gives us URLs like solr/./select.
-        $configuration['core'] = '.';
-      }
       $this->solr = $this->createClient($configuration);
       $this->solr->createEndpoint($configuration + ['key' => 'search_api_solr'], TRUE);
     }

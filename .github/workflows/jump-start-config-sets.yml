@@ -245,6 +245,7 @@ jobs:
                 SOLR_INDEX_WAIT: 4
                 SOLR_CLOUD: true
                 SYMFONY_DEPRECATIONS_HELPER: disabled
+                SEARCH_API_SOLR_VERSION: ${{ matrix.solr }}
               run: |
                 cp search_api_solr/tests/github.phpunit.xml drupal/core/phpunit.xml.dist
                 cd drupal

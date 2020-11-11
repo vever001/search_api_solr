@@ -2,6 +2,8 @@
 
 namespace Drupal\search_api_solr_test\Plugin\SolrConnector;
 
+defined('SEARCH_API_SOLR_VERSION') || define('SEARCH_API_SOLR_VERSION', getenv('SEARCH_API_SOLR_VERSION') ?: 0);
+
 use Drupal\search_api_solr\Plugin\SolrConnector\BasicAuthSolrConnector;
 use Drupal\search_api_solr\Utility\Utility;
 use Solarium\Core\Client\Endpoint;
@@ -41,6 +43,28 @@ class BasicAuthTestSolrConnector extends BasicAuthSolrConnector {
    * @var bool
    */
   protected $intercept = FALSE;
+
+  /**
+   * Prepares the connection to the Solr server.
+   */
+  protected function connect() {
+    if (SEARCH_API_SOLR_VERSION == 3) {
+      // Solr 3.6 doesn't have the core name in the path. But solarium 6 needs
+      // it. The period is a workaround that gives us URLs like solr/./select.
+      $this->configuration['core'] = '.';
+    }
+    parent::connect();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getServerInfo($reset = FALSE) {
+    if (SEARCH_API_SOLR_VERSION == 3) {
+      return parent::getCoreInfo($reset);
+    }
+    return parent::getServerInfo();
+  }
 
   /**
    * {@inheritdoc}
