@@ -233,6 +233,7 @@ jobs:
             #    composer require drupal/search_api_location
 
             - name: Create Solr collections
+              if: matrix.solr != '3'
               run: |
                 docker ps
                 docker exec solr${{ matrix.solr }}_solr${{ matrix.solr }}_1 wait-for-solr.sh

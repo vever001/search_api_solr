@@ -6,6 +6,7 @@ namespace Drupal\Tests\search_api_solr\Kernel;
  * Tests the document datasources using the solr techproducts example.
  *
  * @group search_api_solr
+ * @group not_solr_3
  */
 class SearchApiSolrTechproductsTest extends SolrBackendTestBase {
 
