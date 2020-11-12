@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\search_api_solr_test\Plugin\SolrConnector;
+namespace Drupal\search_api_solr_legacy_test\Plugin\SolrConnector;
 
-use Drupal\search_api_solr\Plugin\SolrConnector\BasicAuthSolrConnector;
 use Drupal\search_api_solr\Utility\Utility;
+use Drupal\search_api_solr_legacy\Plugin\SolrConnector\Solr36Connector;
 use Solarium\Core\Client\Endpoint;
 use Solarium\Core\Client\Request;
 use Solarium\Core\Client\Response;
@@ -11,15 +11,15 @@ use Solarium\Core\Query\QueryInterface;
 use Solarium\Core\Query\Result\Result;
 
 /**
- * Basic auth Solr test connector.
+ * Solr 36 test connector.
  *
  * @SolrConnector(
- *   id = "basic_auth_test",
- *   label = @Translation("Basic Auth Test"),
- *   description = @Translation("A connector usable for Solr installations protected by basic authentication.")
+ *   id = "solr_36_test",
+ *   label = @Translation("Solr 3.6 Test"),
+ *   description = @Translation("Index items using a Solr 3.6 server.")
  * )
  */
-class BasicAuthTestSolrConnector extends BasicAuthSolrConnector {
+class Solr36TestConnector extends Solr36Connector {
 
   /**
    * The Solarium query.
@@ -97,4 +97,29 @@ class BasicAuthTestSolrConnector extends BasicAuthSolrConnector {
     $this->intercept = $intercept;
   }
 
+  public static function adjustBackendConfig($config_name) {
+    $config_factory = \Drupal::configFactory();
+    $config = $config_factory->getEditable($config_name);
+    $backend_config = $config->get('backend_config');
+    unset($backend_config['connector_config']['username']);
+    unset($backend_config['connector_config']['password']);
+    $config->set('backend_config',
+      [
+        'connector' => 'solr_36_test',
+        'connector_config' => [
+          'scheme' => 'http',
+          'host' => 'localhost',
+          'port' => 8983,
+          'path' => '/',
+          'core' => '.',
+        ] + $backend_config['connector_config'],
+      ] + $backend_config)
+      ->save(TRUE);
+
+    $search_api_server_storage = \Drupal::entityTypeManager()->getStorage('search_api_server');
+    $search_api_server_storage->resetCache();
+
+    $search_api_index_storage = \Drupal::entityTypeManager()->getStorage('search_api_index');
+    $search_api_index_storage->resetCache();
+  }
 }

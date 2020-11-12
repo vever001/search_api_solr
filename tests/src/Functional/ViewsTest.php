@@ -54,7 +54,7 @@ class ViewsTest extends SearchApiViewsTest {
   }
 
   /**
-   * Allow 3rd party SOlr connectors to manipulate the config.
+   * Allow 3rd party Solr connectors to manipulate the config.
    */
   protected function adjustBackendConfig() {}
 

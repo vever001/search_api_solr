@@ -39,32 +39,3 @@ function search_api_solr_legacy_search_api_solr_configset_template_mapping_alter
     '5.x' => $template_path . '5.x',
   ];
 }
-
-/**
- * Alter the newly assembled Solr configuration files.
- *
- * @param string[] $files
- *   Array of config files keyed by file names.
- * @param string $lucene_match_version
- *   Lucene (Solr) minor version string.
- * @param string $server_id
- *   Optional Search API server id. Will be set in most cases but might be
- *   empty when the config generation is triggered via UI or drush.
- */
-function search_api_solr_legacy_search_api_solr_config_files_alter(array &$files, string $lucene_match_version, string $server_id = '') {
-  if (version_compare($lucene_match_version, '4', '<')) {
-    if (isset($files['solrconfig.xml'])) {
-      $files['solrconfig.xml'] = str_replace('SEARCH_API_SOLR_SOLRCONFIG_INDEX', $files['solrconfig_index.xml'] ?? '', $files['solrconfig.xml']);
-      $files['solrconfig.xml'] = str_replace('SEARCH_API_SOLR_SOLRCONFIG_EXTRA', $files['solrconfig_extra.xml'] ?? '', $files['solrconfig.xml']);
-      unset($files['solrconfig_index.xml']);
-      unset($files['solrconfig_extra.xml']);
-    }
-    if (isset($files['schema.xml'])) {
-      $files['schema.xml'] = str_replace('SEARCH_API_SOLR_SCHEMA_EXTRA_FIELDS', $files['schema_extra_fields.xml'] ?? '', $files['schema.xml']);
-      $files['schema.xml'] = str_replace('SEARCH_API_SOLR_SCHEMA_EXTRA_TYPES', $files['schema_extra_types.xml'] ?? '', $files['schema.xml']);
-      unset($files['schema_extra_types.xml']);
-      unset($files['schema_extra_fields.xml']);
-    }
-  }
-}
-
