@@ -47,18 +47,18 @@
        The examples below can be used to load some solr-contribs along
        with their external dependencies.
     -->
-  <lib dir="${solr.install.dir:../../..}/contrib/extraction/lib" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../../..}/dist/" regex="solr-cell-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../..}/contrib/extraction/lib" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../..}/dist/" regex="apache-solr-cell-\d.*\.jar" />
 
-  <lib dir="${solr.install.dir:../../..}/contrib/clustering/lib/" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../../..}/dist/" regex="solr-clustering-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../..}/contrib/clustering/lib/" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../..}/dist/" regex="apache-solr-clustering-\d.*\.jar" />
 
-  <lib dir="${solr.install.dir:../../..}/contrib/langid/lib/" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../../..}/dist/" regex="solr-langid-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../..}/contrib/langid/lib/" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../..}/dist/" regex="apache-solr-langid-\d.*\.jar" />
 
-  <lib dir="${solr.install.dir:../../..}/contrib/analysis-extras/lib" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../../..}/contrib/analysis-extras/lucene-libs" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../../..}/dist/" regex="solr-analysis-extras-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../..}/contrib/analysis-extras/lib" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../..}/contrib/analysis-extras/lucene-libs" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../..}/dist/" regex="apache-solr-analysis-extras-\d.*\.jar" />
 
   <!-- an exact path can be used to specify a specific file.  This
        will cause a serious error to be logged if it can't be loaded.
@@ -227,7 +227,7 @@
      <infoStream file="INFOSTREAM.txt">false</infoStream>
 
     <!-- Let the config generator easily inject additional stuff. -->
-    
+
 
   </indexDefaults>
 
@@ -1011,7 +1011,7 @@
       <str name="buildOnOptimize">true</str>
       <str name="onlyMorePopular">true</str>
     </lst>
-  
+
     <lst name="spellchecker">
       <str name="name">und</str>
       <str name="field">spellcheck_und</str>

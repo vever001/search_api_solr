@@ -24,7 +24,7 @@ backend_config:
     http_method: AUTO
     commit_within: 1000
     jmx: false
-    solr_install_dir: '/opt/apache-solr-3.6.2'
+    solr_install_dir: ''
   optimize: false
 status: true
 langcode: en
