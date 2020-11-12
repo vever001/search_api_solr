@@ -103,9 +103,7 @@ spellcheck_field_type:
         class: solr.LowerCaseFilterFactory
       -
         class: solr.RemoveDuplicatesTokenFilterFactory
-collated_field_type:
-  name: collated_und
-  class: solr.StrField
+collated_field_type: {}
 solr_configs:
   searchComponents:
     -

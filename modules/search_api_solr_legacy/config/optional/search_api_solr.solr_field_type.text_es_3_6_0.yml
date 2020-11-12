@@ -152,9 +152,7 @@ unstemmed_field_type:
           enablePositionIncrements: true
         -
           class: solr.RemoveDuplicatesTokenFilterFactory
-collated_field_type:
-  name: collated_es
-  class: solr.StrField
+collated_field_type: {}
 solr_configs:
   searchComponents:
     -

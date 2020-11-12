@@ -168,9 +168,7 @@ unstemmed_field_type:
           class: solr.LowerCaseFilterFactory
         -
           class: solr.RemoveDuplicatesTokenFilterFactory
-collated_field_type:
-  name: collated_en
-  class: solr.StrField
+collated_field_type: {}
 solr_configs:
   searchComponents:
     -

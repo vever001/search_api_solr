@@ -99,7 +99,6 @@ class SolrLegacyTest extends SearchApiSolrTest {
     $this->assertStringContainsString('solr.install.dir', $config_files['solrcore.properties']);
     $this->assertStringContainsString('solr.replication', $config_files['solrcore.properties']);
     $this->assertStringContainsString('"/replication"', $config_files['solrconfig.xml']);
-    $this->assertStringContainsString('"/get"', $config_files['solrconfig.xml']);
   }
 
   /**

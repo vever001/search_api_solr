@@ -4,7 +4,7 @@
      For more details about configurations options that may appear in
      this file, see http://wiki.apache.org/solr/SolrConfigXml.
 -->
-<config name="drupal-4.1.1-solr-3.x-0" >
+<config name="drupal-4.1.1-solr-3.x-1" >
   <!-- In all configuration below, a prefix of "solr." for class names
        is an alias that causes solr to search appropriate packages,
        including org.apache.solr.(search|update|request|core|analysis)
@@ -47,18 +47,18 @@
        The examples below can be used to load some solr-contribs along
        with their external dependencies.
     -->
-  <lib dir="${solr.install.dir:../..}/contrib/extraction/lib" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../..}/dist/" regex="apache-solr-cell-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../../..}/contrib/extraction/lib" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../../..}/dist/" regex="apache-solr-cell-\d.*\.jar" />
 
-  <lib dir="${solr.install.dir:../..}/contrib/clustering/lib/" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../..}/dist/" regex="apache-solr-clustering-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../../..}/contrib/clustering/lib/" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../../..}/dist/" regex="apache-solr-clustering-\d.*\.jar" />
 
-  <lib dir="${solr.install.dir:../..}/contrib/langid/lib/" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../..}/dist/" regex="apache-solr-langid-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../../..}/contrib/langid/lib/" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../../..}/dist/" regex="apache-solr-langid-\d.*\.jar" />
 
-  <lib dir="${solr.install.dir:../..}/contrib/analysis-extras/lib" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../..}/contrib/analysis-extras/lucene-libs" regex=".*\.jar" />
-  <lib dir="${solr.install.dir:../..}/dist/" regex="apache-solr-analysis-extras-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../../..}/contrib/analysis-extras/lib" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../../..}/contrib/analysis-extras/lucene-libs" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../../..}/dist/" regex="apache-solr-analysis-extras-\d.*\.jar" />
 
   <!-- an exact path can be used to specify a specific file.  This
        will cause a serious error to be logged if it can't be loaded.
@@ -227,28 +227,9 @@
      <infoStream file="INFOSTREAM.txt">false</infoStream>
 
     <!-- Let the config generator easily inject additional stuff. -->
-
+    
 
   </indexDefaults>
-
-
-  <!-- JMX
-
-       This example enables JMX if and only if an existing MBeanServer
-       is found, use this if you want to configure JMX through JVM
-       parameters. Remove this to disable exposing Solr configuration
-       and statistics to JMX.
-
-       For more details see http://wiki.apache.org/solr/SolrJmx
-    -->
-  <!-- <jmx /> -->
-  <!-- If you want to connect to a particular server, specify the
-       agentId
-    -->
-  <!-- <jmx agentId="myAgent" /> -->
-  <!-- If you want to start a new MBeanServer, specify the serviceUrl -->
-  <!-- <jmx serviceUrl="service:jmx:rmi:///jndi/rmi://localhost:9999/solr"/>
-    -->
 
   <!-- The default high-performance update handler -->
   <updateHandler class="solr.DirectUpdateHandler2">
@@ -1005,17 +986,41 @@
   <!-- Following is a dynamic way to include other components or any customized solrconfig.xml stuff, added by other contrib modules -->
   <searchComponent name="spellcheck" class="solr.SpellCheckComponent">
     <lst name="spellchecker">
-      <str name="name">en</str>
-      <str name="field">spellcheck_en</str>
-      <str name="spellcheckIndexDir">spellchecker_und</str>
+      <str name="name">nl</str>
+      <str name="field">spellcheck_nl</str>
+      <str name="spellcheckIndexDir">spellchecker_nl</str>
       <str name="buildOnOptimize">true</str>
       <str name="onlyMorePopular">true</str>
     </lst>
-
+  
+    <lst name="spellchecker">
+      <str name="name">en</str>
+      <str name="field">spellcheck_en</str>
+      <str name="spellcheckIndexDir">spellchecker_en</str>
+      <str name="buildOnOptimize">true</str>
+      <str name="onlyMorePopular">true</str>
+    </lst>
+  
+    <lst name="spellchecker">
+      <str name="name">de</str>
+      <str name="field">spellcheck_de</str>
+      <str name="spellcheckIndexDir">spellchecker_de</str>
+      <str name="buildOnOptimize">true</str>
+      <str name="onlyMorePopular">true</str>
+    </lst>
+  
     <lst name="spellchecker">
       <str name="name">und</str>
       <str name="field">spellcheck_und</str>
       <str name="spellcheckIndexDir">spellchecker_und</str>
+      <str name="buildOnOptimize">true</str>
+      <str name="onlyMorePopular">true</str>
+    </lst>
+  
+    <lst name="spellchecker">
+      <str name="name">es</str>
+      <str name="field">spellcheck_es</str>
+      <str name="spellcheckIndexDir">spellchecker_es</str>
       <str name="buildOnOptimize">true</str>
       <str name="onlyMorePopular">true</str>
     </lst>
