@@ -112,7 +112,6 @@ class SolrLegacyTest extends SearchApiSolrTest {
         #'fieldType name="text_phonetic_en" class="solr.TextField"',
         'fieldType name="text_en" class="solr.TextField"',
         'fieldType name="text_de" class="solr.TextField"',
-        '<fieldType name="collated_und" class="solr.StrField"/>',
         '<fieldType name="text_foo_en" class="solr.TextField" positionIncrementGap="100">
   <analyzer type="index">
     <tokenizer class="solr.WhitespaceTokenizerFactory"/>
@@ -148,10 +147,6 @@ class SolrLegacyTest extends SearchApiSolrTest {
         '<dynamicField name="tum_X3b_de_*" type="text_unstemmed_de" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />',
         '<dynamicField name="spellcheck_und*" type="text_spell_und" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />',
         '<dynamicField name="spellcheck_*" type="text_spell_und" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />',
-        '<dynamicField name="sort_X3b_en_*" type="collated_en" stored="false"',
-        '<dynamicField name="sort_X3b_de_*" type="collated_de" stored="false"',
-        '<dynamicField name="sort_X3b_und_*" type="collated_und" stored="false"',
-        '<dynamicField name="sort_*" type="collated_und" stored="false" ',
       ],
       'solrconfig.xml' => [
         '<str name="name">en</str>',
