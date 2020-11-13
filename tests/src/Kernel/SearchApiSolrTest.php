@@ -1024,7 +1024,7 @@ class SearchApiSolrTest extends SolrBackendTestBase {
     if ('3.x' !== $targeted_branch) {
       // There's no real collated field for Solr 3.x. Therefore the sorting of
       // of "non existing" values differ.
-      
+
       // Type multi-value string. Uses first value.
       $results = $this->buildSearch(NULL, [], [], FALSE)
         ->sort('keywords')

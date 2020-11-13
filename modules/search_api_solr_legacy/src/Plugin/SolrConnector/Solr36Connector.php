@@ -33,6 +33,7 @@ class Solr36Connector extends SolrConnectorPluginBase {
       // Solr 3.6 doesn't have the core name in the path. But solarium 6 needs
       // it. The period is a workaround that gives us URLs like "solr/./select".
       'core' => '.',
+      'skip_schema_check' => TRUE,
     ];
   }
 
@@ -50,6 +51,11 @@ class Solr36Connector extends SolrConnectorPluginBase {
     $form['path'] = [
       '#type' => 'value',
       '#value' => '/',
+    ];
+
+    $form['workarounds']['skip_schema_check'] = [
+      '#type' => 'value',
+      '#value' => TRUE,
     ];
 
     return $form;
@@ -80,28 +86,33 @@ class Solr36Connector extends SolrConnectorPluginBase {
    * {@inheritdoc}
    */
   public function coreRestGet($path, ?Endpoint $endpoint = NULL) {
-    return json_encode([]);
+    if (preg_match('@^schema/([^/]+)@', $path, $matches)) {
+      if ('fieldtypes' === $matches[1]) {
+        return ['fieldTypes' => ['name' => 'Solr 3.6']];
+      }
+    }
+    return [];
   }
 
   /**
    * {@inheritdoc}
    */
   public function coreRestPost($path, $command_json = '', ?Endpoint $endpoint = NULL) {
-    return json_encode([]);
+    return [];
   }
 
   /**
    * {@inheritdoc}
    */
   public function serverRestGet($path) {
-    return json_encode([]);
+    return [];
   }
 
   /**
    * {@inheritdoc}
    */
   public function serverRestPost($path, $command_json = '') {
-    return json_encode([]);
+    return [];
   }
 
   /**

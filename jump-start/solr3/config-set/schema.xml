@@ -178,7 +178,9 @@
   <!-- External file fields -->
   <dynamicField name="eff_*" type="file"/>
 
-  <!-- A random sort field -->
+  <dynamicField name="sort_*" type="sortString" indexed="true" stored="false"/>
+
+    <!-- A random sort field -->
   <dynamicField name="random_*" type="random" indexed="true" stored="true"/>
 
   <!-- This field is used to store access information (e.g. node access grants), as opposed to field data -->
@@ -197,7 +199,6 @@
 <dynamicField name="tom_X3b_nl_*" type="text_nl" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
 <dynamicField name="tus_X3b_nl_*" type="text_unstemmed_nl" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
 <dynamicField name="tum_X3b_nl_*" type="text_unstemmed_nl" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
-<dynamicField name="sort_X3b_nl_*" type="collated_nl" stored="false" indexed="true" />
 <dynamicField name="tcedgestrings_X3b_und_*" type="text_edgenstring" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
 <dynamicField name="tcedgestrings_*" type="text_edgenstring" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
 <dynamicField name="tcedgestringm_X3b_und_*" type="text_edgenstring" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
@@ -228,14 +229,12 @@
 <dynamicField name="tom_X3b_en_*" type="text_en" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
 <dynamicField name="tus_X3b_en_*" type="text_unstemmed_en" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
 <dynamicField name="tum_X3b_en_*" type="text_unstemmed_en" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
-<dynamicField name="sort_X3b_en_*" type="collated_en" stored="false" indexed="true" />
 <dynamicField name="ts_X3b_de_*" type="text_de" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
 <dynamicField name="tm_X3b_de_*" type="text_de" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
 <dynamicField name="tos_X3b_de_*" type="text_de" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="true" />
 <dynamicField name="tom_X3b_de_*" type="text_de" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
 <dynamicField name="tus_X3b_de_*" type="text_unstemmed_de" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
 <dynamicField name="tum_X3b_de_*" type="text_unstemmed_de" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
-<dynamicField name="sort_X3b_de_*" type="collated_de" stored="false" indexed="true" />
 <dynamicField name="ts_X3b_und_*" type="text_und" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
 <dynamicField name="ts_*" type="text_und" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
 <dynamicField name="tm_X3b_und_*" type="text_und" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
@@ -250,8 +249,6 @@
 <dynamicField name="tum_*" type="text_und" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
 <dynamicField name="spellcheck_und*" type="text_spell_und" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
 <dynamicField name="spellcheck_*" type="text_spell_und" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
-<dynamicField name="sort_X3b_und_*" type="collated_und" stored="false" indexed="true" />
-<dynamicField name="sort_*" type="collated_und" stored="false" indexed="true" />
 <dynamicField name="tcngramstrings_X3b_und_*" type="text_ngramstring" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
 <dynamicField name="tcngramstrings_*" type="text_ngramstring" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
 <dynamicField name="tcngramstringm_X3b_und_*" type="text_ngramstring" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
@@ -282,7 +279,6 @@
 <dynamicField name="tom_X3b_es_*" type="text_es" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="true" />
 <dynamicField name="tus_X3b_es_*" type="text_unstemmed_es" stored="true" indexed="true" multiValued="false" termVectors="true" omitNorms="false" />
 <dynamicField name="tum_X3b_es_*" type="text_unstemmed_es" stored="true" indexed="true" multiValued="true" termVectors="true" omitNorms="false" />
-<dynamicField name="sort_X3b_es_*" type="collated_es" stored="false" indexed="true" />
 
 
   </fields>
@@ -383,6 +379,40 @@
 
     <!--Binary data type. The data should be sent/retrieved in as Base64 encoded Strings -->
     <fieldType name="binary" class="solr.BinaryField"/>
+
+    <!-- This is an example of using the KeywordTokenizer along
+         With various TokenFilterFactories to produce a sortable field
+         that does not include some properties of the source text
+      -->
+    <fieldType name="sortString" class="solr.TextField" sortMissingLast="true" omitNorms="true">
+      <analyzer>
+        <!-- KeywordTokenizer does no actual tokenizing, so the entire
+            input string is preserved as a single token
+          -->
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
+        <!-- The LowerCase TokenFilter does what you expect, which can be
+            when you want your sorting to be case insensitive
+          -->
+        <filter class="solr.LowerCaseFilterFactory" />
+        <!-- The TrimFilter removes any leading or trailing whitespace -->
+        <filter class="solr.TrimFilterFactory" />
+        <!-- The PatternReplaceFilter gives you the flexibility to use
+            Java Regular expression to replace any sequence of characters
+            matching a pattern with an arbitrary replacement string,
+            which may include back refrences to portions of the orriginal
+            string matched by the pattern.
+
+            See the Java Regular Expression documentation for more
+            infomation on pattern and replacement string syntax.
+
+            http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/package-summary.html
+
+        <filter class="solr.PatternReplaceFilterFactory"
+               pattern="(^\p{Punct}+)" replacement="" replace="all"
+        />
+        -->
+      </analyzer>
+    </fieldType>
 
     <!-- The "RandomSortField" is not used to store or search any
          data.  You can declare fields of this type it in your schema
@@ -496,11 +526,6 @@
   </analyzer>
 </fieldType>
 <!--
-  Dutch Text Field collated
-  3.6.0
--->
-<fieldType name="collated_nl" class="solr.StrField"/>
-<!--
   Dutch Text Field unstemmed
   3.6.0
 -->
@@ -594,11 +619,6 @@
   </analyzer>
 </fieldType>
 <!--
-  English Text Field collated
-  3.6.0
--->
-<fieldType name="collated_en" class="solr.StrField"/>
-<!--
   English Text Field unstemmed
   3.6.0
 -->
@@ -651,11 +671,6 @@
     <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
   </analyzer>
 </fieldType>
-<!--
-  German Text Field collated
-  3.6.0
--->
-<fieldType name="collated_de" class="solr.StrField"/>
 <!--
   German Text Field unstemmed
   3.6.0
@@ -721,11 +736,6 @@
   </analyzer>
 </fieldType>
 <!--
-  Language Undefined Text Field collated
-  3.6.0
--->
-<fieldType name="collated_und" class="solr.StrField"/>
-<!--
   NGram String Field
   3.6.0
 -->
@@ -790,11 +800,6 @@
     <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
   </analyzer>
 </fieldType>
-<!--
-  Spanish Text Field collated
-  3.6.0
--->
-<fieldType name="collated_es" class="solr.StrField"/>
 <!--
   Spanish Text Field unstemmed
   3.6.0
