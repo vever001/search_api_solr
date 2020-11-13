@@ -258,12 +258,9 @@ jobs:
 
       strategy:
         matrix:
-          #drupal: ['8.9', '9.0', '9.1']
-          #solr: ['3']
-          #php: ['7.3', '7.4']
-          drupal: ['8.9']
+          drupal: ['8.9', '9.0', '9.1']
           solr: ['3']
-          php: ['7.3']
+          php: ['7.3', '7.4']
 
       name: Drupal ${{ matrix.drupal }}, Solr ${{ matrix.solr }}, PHP ${{ matrix.php }}
 
